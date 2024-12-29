@@ -12,10 +12,11 @@ SIMPLE_JWT = {
     'UPDATE_LAST_LOGIN': False, # If True, the last_login field of the user will be updated on every request to the server
 
     'ALGORITHM': 'HS256',   # Algorithm used to sign the token
-    'SIGNING_KEY': 'your-secret-key',  # Replace with your actual secret key
     'VERIFYING_KEY': None,  # If None, the value of SIGNING_KEY will be used
     'AUDIENCE': None,   # The audience claim (aud)
     'ISSUER': None, # The issuer claim (iss)
+
+    'SIGNING_KEY': 'Lnu6J9S79Tfd5A1mCGCwAJTCnz7LIH7eFr2M4-H5xvaMiszzUMfXcRX38V4u61vwEiTqxLBi4gGOqnk0SmFAZw',  # Replace with your actual secret key
 
     'AUTH_HEADER_TYPES': ('Bearer',),   # The type of the auth header
     'AUTH_HEADER_NAME': 'HTTP_AUTHORIZATION',   # The name of the auth header
