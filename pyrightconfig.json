@@ -1,4 +1,4 @@
 {
-  "ignore": ["*"],
-  "typeCheckingMode": "off"
+  "ignore": ["pyright"],
+  "typeCheckingMode": "basic"
 }
