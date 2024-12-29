@@ -12,6 +12,26 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 
 from pathlib import Path
 
+from .auth_settings import (
+    REST_FRAMEWORK_SETTINGS,
+    SECURITY_SETTINGS,
+    CORS_SETTINGS,
+    SIMPLE_JWT,
+    DEBUG
+)
+
+# Apply settings
+REST_FRAMEWORK = REST_FRAMEWORK_SETTINGS
+SIMPLE_JWT = SIMPLE_JWT
+
+# Apply CORS settings
+for key, value in CORS_SETTINGS.items():
+    globals()[key] = value
+
+# Apply Security settings
+for key, value in SECURITY_SETTINGS.items():
+    globals()[key] = value
+
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -41,7 +61,8 @@ INSTALLED_APPS = [
 
 THIRD_PARTY_APPS = [
     'rest_framework',
-    'oauth2_provider',
+    'corsheaders',
+    'rest_framework_simplejwt',
 ]
 
 LOCAL_APPS = [
@@ -53,6 +74,7 @@ INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
 SITE_ID = 1
 
 MIDDLEWARE = [
+    'corsheaders.middleware.CorsMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -138,20 +160,3 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 # Custom Settings
 
 # AUTH_USER_MODEL = 'auth_api.User'
-
-from .oauth2_settings import (
-    OAUTH2_SETTINGS,
-    REST_FRAMEWORK_SETTINGS,
-    SECURITY_SETTINGS,
-    DEBUG
-)
-
-# OAuth2 Provider Settings
-OAUTH2_PROVIDER = OAUTH2_SETTINGS
-
-# REST Framework Settings
-REST_FRAMEWORK = REST_FRAMEWORK_SETTINGS
-
-# Apply Security Settings
-for key, value in SECURITY_SETTINGS.items():
-    globals()[key] = value
