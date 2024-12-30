@@ -1,109 +1,85 @@
-```markdown
 # Shebaa247 Job Portal API
 
 A Django Rest Framework based API for a Job Portal.
 
 ## Features
 
-### Custom User Authentication
-- Email-based authentication (no username)
-- Three user types: Job Seeker, Employer, and Admin
-- JWT (JSON Web Token) based authentication
-- Custom user model with email as the unique identifier
+### Authentication
+- Custom user model with email authentication
+- JWT token based authorization
+- Password reset with secure tokens
+- OTP verification system
+- Three user types: Job Seeker, Employer, Admin
 
-### Authentication Endpoints
-1. **Registration**
-   - Endpoint: `POST /api/auth/register/`
-   - Fields: email, password, password2, user_type
-   - Creates new user account
+### API Endpoints
 
-2. **Login**
-   - Endpoint: `POST /api/auth/login/`
-   - Fields: email, password
-   - Returns JWT access and refresh tokens
-
-3. **Token Refresh**
-   - Endpoint: `POST /api/auth/token/refresh/`
-   - Fields: refresh token
-   - Returns new access token
-
-### OTP Verification System
-- 7-digit OTP generation
-- 5-minute expiration time
-- Verification status tracking
-- Email-based OTP delivery (to be implemented)
+#### Auth Endpoints
+- `POST /api/auth/register/` - User registration
+- `POST /api/auth/login/` - User login
+- `POST /api/auth/token/refresh/` - Refresh JWT token
+- `POST /api/auth/password/reset/` - Request password reset
+- `POST /api/auth/password/reset/confirm/` - Confirm password reset
 
 #### OTP Endpoints
-1. **Request OTP**
-   - Endpoint: `POST /api/auth/otp/request/`
-   - Fields: email
-   - Generates OTP for registered users
+- `POST /api/auth/otp/request/` - Request OTP
+- `POST /api/auth/otp/verify/` - Verify OTP
 
-2. **Verify OTP**
-   - Endpoint: `POST /api/auth/otp/verify/`
-   - Fields: email, code
-   - Verifies submitted OTP
-
-## Technical Stack
-
-- Python 3.x
-- Django 4.2
-- Django Rest Framework
-- SimpleJWT for JWT authentication
-- SQLite (development)
-
-## Security Features
-
-- JWT authentication with refresh tokens
-- Password validation
-- OTP expiration
-- Admin panel security measures
-- CORS configuration
-- Rate limiting
-
-## Development Status
-
-- ✅ Custom User Model
-- ✅ JWT Authentication
+## Project Authentication Status
+- ✅ User Authentication
+- ✅ Password Reset
 - ✅ OTP System
 - ⏳ Email Verification
-- ⏳ Password Reset
 - ⏳ User Profiles
 
-## Project Structure
+## Tech Stack
+- Django 4.2
+- Django Rest Framework
+- SimpleJWT
+- SQLite (Development)
 
+## Directory Structure
+
+```
 Shebaa247-API/
-├── auth_api/
-│   ├── models/
-│   │   ├── __init__.py
-│   │   ├── user_model.py
-│   │   └── otp_model.py
-│   ├── serializers/
-│   │   ├── __init__.py
-│   │   ├── login_serializer.py
-│   │   ├── register_serializer.py
-│   │   └── otp_serializer.py
-│   ├── views/
-│   │   ├── __init__.py
-│   │   ├── login_view.py
-│   │   ├── register_view.py
-│   │   └── otp_view.py
-│   ├── __init__.py
-│   ├── admin.py
-│   ├── apps.py
-│   ├── tests.py
-│   └── urls.py
 ├── Shebaa247/
 │   ├── __init__.py
 │   ├── asgi.py
-│   ├── auth_settings.py
-│   ├── settings.py
-│   ├── urls.py
+│   ├── auth_settings.py      # Custom authentication settings
+│   ├── settings.py           # Main settings
+│   ├── urls.py              # Main URL configuration
 │   └── wsgi.py
+│
+├── auth_api/
+│   ├── __init__.py
+│   ├── admin.py             # Admin configurations
+│   ├── apps.py
+│   │
+│   ├── models/              # Models directory
+│   │   ├── __init__.py
+│   │   ├── user_model.py    # Custom user model
+│   │   └── otp_model.py     # OTP model
+│   │
+│   ├── serializers/         # Serializers directory
+│   │   ├── __init__.py
+│   │   ├── login_serializer.py
+│   │   ├── register_serializer.py
+│   │   ├── otp_serializer.py
+│   │   └── password_reset_serializer.py
+│   │
+│   ├── views/               # Views directory
+│   │   ├── __init__.py
+│   │   ├── login_view.py
+│   │   ├── register_view.py
+│   │   ├── otp_view.py
+│   │   └── password_reset_view.py
+│   │
+│   ├── tests.py
+│   └── urls.py              # Auth API URLs
+│
 ├── .gitignore
+├── README.md
 ├── manage.py
 ├── pyrightconfig.json
-├── README.md
 └── requirements.txt
 
 The project is still under development. More features will be added soon. Stay tuned!
