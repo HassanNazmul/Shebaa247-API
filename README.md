@@ -16,9 +16,13 @@ A Django Rest Framework based API for a Job Portal.
 #### Auth Endpoints
 - `POST /api/auth/register/` - User registration
 - `POST /api/auth/login/` - User login
+- `POST /api/auth/logout/` - User logout
+- `POST /api/auth/logout/all/` - Logout from all devices
 - `POST /api/auth/token/refresh/` - Refresh JWT token
 - `POST /api/auth/password/reset/` - Request password reset
 - `POST /api/auth/password/reset/confirm/` - Confirm password reset
+- `POST /api/auth/password/change/` - Change password
+- `POST /api/auth/password/change/confirm/` - Confirm password change
 
 #### OTP Endpoints
 - `POST /api/auth/otp/request/` - Request OTP
@@ -44,37 +48,40 @@ Shebaa247-API/
 ├── Shebaa247/
 │   ├── __init__.py
 │   ├── asgi.py
-│   ├── auth_settings.py      # Custom authentication settings
-│   ├── settings.py           # Main settings
-│   ├── urls.py              # Main URL configuration
+│   ├── auth_settings.py
+│   ├── settings.py
+│   ├── urls.py
 │   └── wsgi.py
 │
 ├── auth_api/
 │   ├── __init__.py
-│   ├── admin.py             # Admin configurations
+│   ├── admin.py
 │   ├── apps.py
+│   ├── tests.py
+│   ├── urls.py
 │   │
-│   ├── models/              # Models directory
+│   ├── models/
 │   │   ├── __init__.py
-│   │   ├── user_model.py    # Custom user model
-│   │   └── otp_model.py     # OTP model
+│   │   ├── user_model.py
+│   │   └── otp_model.py
 │   │
-│   ├── serializers/         # Serializers directory
+│   ├── serializers/
 │   │   ├── __init__.py
 │   │   ├── login_serializer.py
+│   │   ├── logout_serializer.py
 │   │   ├── register_serializer.py
 │   │   ├── otp_serializer.py
-│   │   └── password_reset_serializer.py
+│   │   ├── password_reset_serializer.py
+│   │   └── password_change_serializer.py
 │   │
-│   ├── views/               # Views directory
-│   │   ├── __init__.py
-│   │   ├── login_view.py
-│   │   ├── register_view.py
-│   │   ├── otp_view.py
-│   │   └── password_reset_view.py
-│   │
-│   ├── tests.py
-│   └── urls.py              # Auth API URLs
+│   └── views/
+│       ├── __init__.py
+│       ├── login_view.py
+│       ├── logout_view.py
+│       ├── register_view.py
+│       ├── otp_view.py
+│       ├── password_reset_view.py
+│       └── password_change_view.py
 │
 ├── .gitignore
 ├── README.md
