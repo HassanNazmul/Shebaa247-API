@@ -5,11 +5,24 @@ DEBUG = True
 
 # JWT Settings
 SIMPLE_JWT = {
-    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=60), # 1 hour
-    'REFRESH_TOKEN_LIFETIME': timedelta(days=1),    # 1 day
-    'ROTATE_REFRESH_TOKENS': False, # If True, old refresh tokens will be deleted on refresh
-    'BLACKLIST_AFTER_ROTATION': True,   # If True, old refresh tokens will be blacklisted after rotation
-    'UPDATE_LAST_LOGIN': False, # If True, the last_login field of the user will be updated on every request to the server
+    'ACCESS_TOKEN_LIFETIME': timedelta(minutes=15),  # ⬅️ Reduce from 60 to 15 minutes
+    'REFRESH_TOKEN_LIFETIME': timedelta(days=14),    # ⬅️ Increase from 1 to 14 days
+    'ROTATE_REFRESH_TOKENS': True,                   # ⬅️ Enable token rotation
+    'BLACKLIST_AFTER_ROTATION': True,                # ⬅️ Blacklist old tokens after rotation
+
+    'UPDATE_LAST_LOGIN': True,                      # ⬅️ Track login times
+
+    'AUTH_COOKIE': 'refresh_token',                 # ⬅️ Cookie name for refresh token
+    'AUTH_COOKIE_SECURE': True,                     # ⬅️ Only send cookie over HTTPS
+    'AUTH_COOKIE_HTTP_ONLY': True,                  # ⬅️ Prevent JavaScript access
+    'AUTH_COOKIE_PATH': '/',                        # ⬅️ Cookie path
+    'AUTH_COOKIE_SAMESITE': 'Lax',                  # ⬅️ CSRF protection
+
+    # Token Properties
+    'TOKEN_OBTAIN_SERIALIZER': 'rest_framework_simplejwt.serializers.TokenObtainPairSerializer',    # The serializer used to obtain a token
+    'TOKEN_REFRESH_SERIALIZER': 'rest_framework_simplejwt.serializers.TokenRefreshSerializer',      # The serializer used to refresh a token
+    'TOKEN_VERIFY_SERIALIZER': 'rest_framework_simplejwt.serializers.TokenVerifySerializer',        # The serializer used to verify a token
+    'TOKEN_BLACKLIST_SERIALIZER': 'rest_framework_simplejwt.serializers.TokenBlacklistSerializer',  # The serializer used to blacklist a token
 
     'ALGORITHM': 'HS256',   # Algorithm used to sign the token
     'VERIFYING_KEY': None,  # If None, the value of SIGNING_KEY will be used
@@ -34,8 +47,6 @@ SIMPLE_JWT = {
 REST_FRAMEWORK_SETTINGS = {
     'DEFAULT_AUTHENTICATION_CLASSES': (
         'rest_framework_simplejwt.authentication.JWTAuthentication',
-        'rest_framework.authentication.SessionAuthentication',
-        'rest_framework.authentication.BasicAuthentication',
     ),
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
@@ -45,8 +56,8 @@ REST_FRAMEWORK_SETTINGS = {
         'rest_framework.throttling.UserRateThrottle'
     ),
     'DEFAULT_THROTTLE_RATES': {
-        'anon': '100/day',
-        'user': '1000/day'
+        'anon': '20/minute',  # ⬅️ More strict rate limiting
+        'user': '60/minute'   # ⬅️ More strict rate limiting
     }
 }
 
