@@ -1,5 +1,7 @@
 # auth_api/serializers/__init__.py
 from .login_serializer import LoginSerializer
+from .logout_serializer import LogoutSerializer
 from .register_serializer import RegistrationSerializer
 from .otp_serializer import OTPRequestSerializer, OTPVerifySerializer
 from .password_reset_serializer import PasswordResetRequestSerializer, PasswordResetConfirmSerializer
+from .password_change_serializer import PasswordChangeRequestSerializer, PasswordChangeConfirmSerializer
