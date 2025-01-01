@@ -5,3 +5,4 @@ from .register_serializer import RegistrationSerializer
 from .otp_serializer import OTPRequestSerializer, OTPVerifySerializer
 from .password_reset_serializer import PasswordResetRequestSerializer, PasswordResetConfirmSerializer
 from .password_change_serializer import PasswordChangeRequestSerializer, PasswordChangeConfirmSerializer
+from .account_deletion_serializer import AccountDeletionRequestSerializer, AccountDeletionConfirmSerializer
