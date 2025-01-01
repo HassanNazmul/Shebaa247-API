@@ -66,3 +66,6 @@ class User(AbstractBaseUser, PermissionsMixin):
         if self.is_superuser and self.user_type != 'ADMIN':
             self.user_type = 'ADMIN'
         super().save(*args, **kwargs)
+
+    def delete_account(self):
+        super().delete()

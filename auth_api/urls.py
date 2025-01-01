@@ -11,7 +11,9 @@ from .views import (
     LogoutView,
     LogoutAllView,
     PasswordChangeRequestView,
-    PasswordChangeConfirmView
+    PasswordChangeConfirmView,
+    AccountDeletionRequestView,
+    AccountDeletionConfirmView,
 )
 
 app_name = 'auth_api'
@@ -32,4 +34,7 @@ urlpatterns = [
 
     path('password/change/', PasswordChangeRequestView.as_view(), name='password-change-request'),
     path('password/change/confirm/', PasswordChangeConfirmView.as_view(), name='password-change-confirm'),
+
+    path('account/delete/request/', AccountDeletionRequestView.as_view(), name='account-deletion-request'),
+    path('account/delete/confirm/', AccountDeletionConfirmView.as_view(), name='account-deletion-confirm'),
 ]
