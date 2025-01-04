@@ -38,3 +38,16 @@ urlpatterns = [
     path('account/delete/request/', AccountDeletionRequestView.as_view(), name='account-deletion-request'),
     path('account/delete/confirm/', AccountDeletionConfirmView.as_view(), name='account-deletion-confirm'),
 ]
+
+# Future work
+# Priority Implementation Order:
+# 1. Email Verification (Most important)
+# 2. Profile Management
+# 3. Session Management
+# 4. Security Features
+# 5. Two-Factor Authentication
+# 6. Account Recovery
+# 7. Notification Preferences
+# 8. API Access Management
+# 9. Social Authentication
+# 10. Audit and Compliance
