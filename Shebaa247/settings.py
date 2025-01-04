@@ -68,6 +68,7 @@ THIRD_PARTY_APPS = [
 
 LOCAL_APPS = [
     'auth_api.apps.AuthApiConfig',
+    'profiles.apps.ProfilesConfig',
 ]
 
 INSTALLED_APPS += THIRD_PARTY_APPS + LOCAL_APPS
