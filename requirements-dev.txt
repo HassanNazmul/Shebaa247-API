@@ -1,0 +1,5 @@
+# requirements-dev.txt (for development tools)
+python-lsp-server
+black
+pylint
+pyls-isort
