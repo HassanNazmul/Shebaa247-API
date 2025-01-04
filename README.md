@@ -23,6 +23,8 @@ A Django Rest Framework based API for a Job Portal.
 - `POST /api/auth/password/reset/confirm/` - Confirm password reset
 - `POST /api/auth/password/change/` - Change password
 - `POST /api/auth/password/change/confirm/` - Confirm password change
+- `POST /api/auth/account/delete/` - Delete user account
+- `POST /api/auth/account/delete/confirm/` - Confirm account deletion
 
 #### OTP Endpoints
 - `POST /api/auth/otp/request/` - Request OTP
@@ -67,6 +69,7 @@ Shebaa247-API/
 │   │
 │   ├── serializers/
 │   │   ├── __init__.py
+│   │   ├── account_deletion_serializer.py
 │   │   ├── login_serializer.py
 │   │   ├── logout_serializer.py
 │   │   ├── register_serializer.py
@@ -76,6 +79,7 @@ Shebaa247-API/
 │   │
 │   └── views/
 │       ├── __init__.py
+│       ├── account_deletion_view.py
 │       ├── login_view.py
 │       ├── logout_view.py
 │       ├── register_view.py
@@ -83,10 +87,35 @@ Shebaa247-API/
 │       ├── password_reset_view.py
 │       └── password_change_view.py
 │
+├── profiles/
+│   ├── __init__.py
+│   ├── admin.py
+│   ├── apps.py
+│   ├── tests.py
+│   ├── urls.py
+│   ├── utils.py
+│   ├── views.py
+│   │
+│   └── models/
+│       ├── __init__.py
+│       ├── base_profile.py
+│       │
+│       ├── employer/
+│       │   ├── __init__.py
+│       │   └── employer_profile.py
+│       │
+│       └── jobseeker/
+│           ├── __init__.py
+│           ├── profile.py
+│           ├── status_choice.py
+│           ├── user_education.py
+│           └── work_experience.py
+│
 ├── .gitignore
 ├── README.md
 ├── manage.py
 ├── pyrightconfig.json
-└── requirements.txt
+├── requirements.txt
+└── requirements-dev.txt
 
 The project is still under development. More features will be added soon. Stay tuned!
